@@ -1,6 +1,7 @@
 const SubscriptionPlan = require('../models/SubscriptionPlan');
 const Subscription = require('../models/Subscription');
 const User = require('../models/User');
+const BillingInformation = require('../models/BillingInformation');
 
 // Get all active subscription plans
 exports.getPlans = async (req, res) => {
@@ -34,6 +35,25 @@ exports.subscribe = async (req, res) => {
       });
     }
 
+    // Find billing information (use provided ID or default)
+    let billingInfo;
+    if (billingInfoId) {
+      billingInfo = await BillingInformation.findById(billingInfoId);
+    } else {
+      // Find user's default billing information
+      billingInfo = await BillingInformation.findOne({ 
+        user: userId, 
+        isDefault: true 
+      });
+    }
+
+    if (!billingInfo) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'No billing information found. Please add billing information first.'
+      });
+    }
+
     // Calculate end date based on plan duration
     const startDate = new Date();
     const endDate = new Date();
@@ -51,7 +71,7 @@ exports.subscribe = async (req, res) => {
       startDate,
       endDate,
       paidAmount: discountedPrice,
-      billingInfo: billingInfoId
+      billingInfo: billingInfo._id
     });
 
     // Update user's active subscription
@@ -62,6 +82,7 @@ exports.subscribe = async (req, res) => {
       data: { subscription }
     });
   } catch (error) {
+    console.error('Subscription error:', error);
     res.status(500).json({
       status: 'error',
       message: 'Error creating subscription'

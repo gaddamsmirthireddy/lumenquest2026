@@ -10,7 +10,7 @@ const generateToken = (userId) => {
 
 exports.register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, adminKey } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -27,6 +27,16 @@ exports.register = async (req, res) => {
         status: 'error',
         message: 'Invalid role. Role must be either "user" or "admin"'
       });
+    }
+
+    // Check admin key if trying to register as admin
+    if (role === 'admin') {
+      if (!adminKey || adminKey !== process.env.ADMIN_REGISTRATION_KEY) {
+        return res.status(403).json({
+          status: 'error',
+          message: 'Invalid admin key. Admin registration requires a valid admin key.'
+        });
+      }
     }
 
     // Create new user
