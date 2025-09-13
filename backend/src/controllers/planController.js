@@ -1,15 +1,13 @@
 const SubscriptionPlan = require('../models/SubscriptionPlan');
 const { createAuditLog } = require('../utils/auditLogger');
 
-// Create a new plan
 exports.createPlan = async (req, res) => {
   try {
     const plan = await SubscriptionPlan.create(req.body);
     
-    // Create audit log
     await createAuditLog({
       action: 'PLAN_CREATE',
-      performedBy: req.user._id,
+      performedBy: req.user.id,
       actionDetails: { planId: plan._id },
       entityType: 'PLAN',
       entityId: plan._id,
@@ -28,7 +26,7 @@ exports.createPlan = async (req, res) => {
   }
 };
 
-// List all plans
+
 exports.getAllPlans = async (req, res) => {
   try {
     const plans = await SubscriptionPlan.find();
@@ -44,7 +42,6 @@ exports.getAllPlans = async (req, res) => {
   }
 };
 
-// Update a plan
 exports.updatePlan = async (req, res) => {
   try {
     const oldPlan = await SubscriptionPlan.findById(req.params.id);
@@ -61,10 +58,9 @@ exports.updatePlan = async (req, res) => {
       { new: true, runValidators: true }
     );
 
-    // Create audit log
     await createAuditLog({
       action: 'PLAN_UPDATE',
-      performedBy: req.user._id,
+      performedBy: req.user.id,
       actionDetails: { planId: updatedPlan._id },
       entityType: 'PLAN',
       entityId: updatedPlan._id,
@@ -84,7 +80,6 @@ exports.updatePlan = async (req, res) => {
   }
 };
 
-// Delete a plan
 exports.deletePlan = async (req, res) => {
   try {
     const plan = await SubscriptionPlan.findById(req.params.id);
@@ -95,14 +90,12 @@ exports.deletePlan = async (req, res) => {
       });
     }
 
-    // Instead of actually deleting, mark as inactive
     plan.isActive = false;
     await plan.save();
 
-    // Create audit log
     await createAuditLog({
       action: 'PLAN_DELETE',
-      performedBy: req.user._id,
+      performedBy: req.user.id,
       actionDetails: { planId: plan._id },
       entityType: 'PLAN',
       entityId: plan._id,
@@ -122,7 +115,6 @@ exports.deletePlan = async (req, res) => {
   }
 };
 
-// Add discount to a plan
 exports.addDiscount = async (req, res) => {
   try {
     const { percentage, validUntil } = req.body;
@@ -147,7 +139,7 @@ exports.addDiscount = async (req, res) => {
     // Create audit log
     await createAuditLog({
       action: 'DISCOUNT_CREATE',
-      performedBy: req.user._id,
+      performedBy: req.user.id,
       actionDetails: { planId: plan._id, discount: plan.discount },
       entityType: 'PLAN',
       entityId: plan._id,
