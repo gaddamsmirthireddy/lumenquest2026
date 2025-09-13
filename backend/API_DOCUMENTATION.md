@@ -77,17 +77,28 @@ All analytics routes require authentication and admin role.
 
 ## Request/Response Examples
 
-### 1. User Registration
-```http
+1. User Registration (Default user)
 POST /api/auth/register
 {
   "name": "John Doe",
   "email": "john@example.com",
   "password": "securepassword"
 }
-```
 
-### 2. Create Subscription Plan
+
+👉 Creates a user with role user.
+
+### 2. Admin Registration (Requires Secret Key)
+POST /api/auth/register
+{
+  "name": "Admin User",
+  "email": "admin@example.com",
+  "password": "securepassword",
+  "role": "admin",
+  "adminKey": "super-secret-admin-key"
+}
+
+### 3. Create Subscription Plan
 ```http
 POST /api/plans
 {
@@ -99,7 +110,7 @@ POST /api/plans
 }
 ```
 
-### 3. Add Discount
+### 4. Add Discount
 ```http
 POST /api/discounts/:planId
 {
@@ -109,7 +120,7 @@ POST /api/discounts/:planId
 }
 ```
 
-### 4. Subscribe to Plan
+### 5. Subscribe to Plan
 ```http
 POST /api/subscriptions
 {
