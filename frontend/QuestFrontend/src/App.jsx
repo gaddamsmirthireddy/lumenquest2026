@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from './Components/Welcome';
 import Authentication from "./Components/Authentication";
-
+import SubscriptionPage from "./pages/SubscriptionPage";
 function App() {
   return (
     <BrowserRouter>
