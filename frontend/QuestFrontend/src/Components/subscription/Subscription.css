@@ -215,6 +215,228 @@
     transform: scale(40, 40);
   }
 }
+/* SubscriptionPage.css */
+
+.subscription-page {
+  padding: 2rem 0;
+}
+
+.page-header {
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+}
+
+/* Plan comparison styles */
+.plan-comparison {
+  margin: 2rem 0;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+  border: 1px solid #ecf0f1;
+}
+
+.comparison-table th {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  font-weight: 600;
+}
+
+.comparison-table thead th:first-child {
+  background: #2c3e50;
+  text-align: left;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.comparison-table tbody td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.feature-check {
+  color: #27ae60;
+  font-size: 1.2rem;
+}
+
+.feature-cross {
+  color: #e74c3c;
+  font-size: 1.2rem;
+}
+
+/* Current plan indicator */
+.current-plan-badge {
+  background: #27ae60;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+/* Responsive adjustments for SubscriptionPage */
+@media (max-width: 992px) {
+  .page-title {
+    font-size: 2.2rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .subscription-page {
+    padding: 1rem 0;
+  }
+  
+  .page-header {
+    margin-bottom: 2rem;
+  }
+  
+  .page-title {
+    font-size: 1.8rem;
+  }
+  
+  .comparison-table {
+    font-size: 0.9rem;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.8rem 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .comparison-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .page-title {
+    font-size: 1.6rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Additional utility classes */
+.text-premium {
+  color: #f39c12;
+}
+
+.text-business {
+  color: #9b59b6;
+}
+
+/* FAQ Section Styles */
+.faq-section {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+}
+
+.faq-title {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-header {
+  background-color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+}
+
+.faq-button {
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 600;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-button:focus {
+  box-shadow: none;
+}
+
+.faq-button:hover {
+  color: #3498db;
+}
+
+.faq-body {
+  background-color: white;
+  border-top: 1px solid #ecf0f1;
+  padding: 1rem 1.5rem;
+}
+
+/* Testimonial Styles */
+.testimonial-section {
+  margin: 3rem 0;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+.testimonial-text {
+  color: #2c3e50;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: #3498db;
+}
+
+.testimonial-role {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
 
 @keyframes bounce {
   0%, 20%, 53%, 80%, 100% {
